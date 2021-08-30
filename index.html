@@ -267,24 +267,8 @@
 
     // 3D MODEL NAMES
     var starModelName = 'star';
-    var cdModelName = 'cd';
-    var tvModelName = 'tv';
-    var polyModel = 'poly';
-    var starbaseModelName = 'starbase'
-    var runway1ModelName = 'runway';
-    var runway2ModelName = 'runway2';
-    var idk1ModelName = 'model1a';
-    var idk2ModelName = 'model2a';
-    var idk3ModelName = 'model3a';
-    var islandsModelName = 'islands';
-    var lookupModelName = 'lookup';
-    var osModelName = 'OS';
-    var wModelName = 'w';
-    var boxModel = 'box';
-    var faceModel = 'face';
-    var satModel = 'sat';
     var numLoadedModels = 0;
-    var totalNumOfModels = 17; // NOTE: must match the number of models we load
+    var totalNumOfModels = 1; // NOTE: must match the number of models we load
 
 
     // overlay div for device orientation API
@@ -323,23 +307,7 @@
        * - If model requires customization after loading create a custom handler
        *   and made sure it follows the template of onStarLoadSuccess
        */
-      gltfLoaderInstance.load('models/star.gltf', onStarLoadSuccess);
-      gltfLoaderInstance.load('models/cd.gltf', onCDLoadSuccess);
-      gltfLoaderInstance.load('models/poly.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/tv.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/starbase.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/runway.gltf', onRunwayLoadSuccess);
-      gltfLoaderInstance.load('models/runway2.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/model1a.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/model2a.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/model3a.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/islands.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/lookup.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/OS.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/w.gltf', onDefaultGLTFLoadSuccess);
-      gltfLoaderInstance.load('models/box.gltf', onBoxLoadSuccess);
-      gltfLoaderInstance.load('models/sat.gltf', onSatLoadSuccess);
-      gltfLoaderInstance.load('models/face.gltf', onFaceLoadSuccess);
+      //gltfLoaderInstance.load('models/star.gltf', onStarLoadSuccess);
     }
 
     function init() {
@@ -380,7 +348,6 @@
       grid.material.transparent = false;
       grid.position.y = -22;
       worldScene.add(grid);
-
 
 
 
@@ -531,136 +498,6 @@
             //window.open("https://itunes.apple.com/us/artist/wev/1356660469");
             // show the modal
             starModal.classList.remove('hidden');
-          };
-          // Add mesh to list of hittable meshes
-          hittableMeshes.push(grandchild);
-        });
-      });
-
-      // END CUSTOMIZATION HERE
-
-      // Start animation loop if we were ready
-      //checkIfAllModelsAreLoaded();
-    }
-
-    function onCDLoadSuccess(gltf) {
-      console.log("Done loading cd gltf model that needs customization");
-
-      // Do standard stuff we do for all GLTF models that get loaded
-      ++numLoadedModels;
-      var model = gltf.scene;
-      placeGLTFModelInSceneAndAnimate(gltf);
-
-      // START CUSTOMIZATION HERE
-
-      // In this intance let's add hit detection and open a modal
-      model.children.forEach(function(child) {
-        child.children.forEach(function(grandchild) {
-          // Add raycaster hit detection callback
-          grandchild.userData.hitCallback = function() {
-            // open link in new tab
-            window.open("https://soundcloud.com/worldwidewev/sets/poly/s-qJ1Ya");
-            // show the modal
-          };
-          // Add mesh to list of hittable meshes
-          hittableMeshes.push(grandchild);
-        });
-      });
-
-      // END CUSTOMIZATION HERE
-
-      // Start animation loop if we were ready
-      //checkIfAllModelsAreLoaded();
-    }
-
-    function onRunwayLoadSuccess(gltf) {
-      console.log("Done loading cart gltf model that needs customization");
-
-      // Do standard stuff we do for all GLTF models that get loaded
-      ++numLoadedModels;
-      var model = gltf.scene;
-      placeGLTFModelInSceneAndAnimate(gltf);
-      model.children.forEach(function(child) {
-        child.children.forEach(function(grandchild) {
-          // Add raycaster hit detection callback
-          grandchild.userData.hitCallback = function() {
-            // open link in new tab
-            window.open("https://worldwidewev.bigcartel.com/");
-          };
-          // Add mesh to list of hittable meshes
-          hittableMeshes.push(grandchild);
-        });
-      });
-
-      // END CUSTOMIZATION HERE
-
-      // Start animation loop if we were ready
-      //checkIfAllModelsAreLoaded();
-    }
-
-    function onBoxLoadSuccess(gltf) {
-      console.log("Done loading box gltf model that needs customization");
-
-      // Do standard stuff we do for all GLTF models that get loaded
-      ++numLoadedModels;
-      var model = gltf.scene;
-      placeGLTFModelInSceneAndAnimate(gltf);
-      model.children.forEach(function(child) {
-
-        // Add raycaster hit detection callback
-        child.userData.hitCallback = function() {
-          // open link in new tab
-          //window.open("https://instagram.com/worldwidewev");
-          goalModal.classList.remove('hidden');
-        };
-        // Add mesh to list of hittable meshes
-        hittableMeshes.push(child);
-      });
-
-      // END CUSTOMIZATION HERE
-
-      // Start animation loop if we were ready
-      //checkIfAllModelsAreLoaded();
-    }
-
-    function onFaceLoadSuccess(gltf) {
-      console.log("Done loading box gltf model that needs customization");
-
-      // Do standard stuff we do for all GLTF models that get loaded
-      ++numLoadedModels;
-      var model = gltf.scene;
-      placeGLTFModelInSceneAndAnimate(gltf);
-      model.children.forEach(function(child) {
-
-        // Add raycaster hit detection callback
-        child.userData.hitCallback = function() {
-          // open link in new tab
-          //window.open("https://instagram.com/worldwidewev");
-          faceModal.classList.remove('hidden');
-        };
-        // Add mesh to list of hittable meshes
-        hittableMeshes.push(child);
-      });
-
-      // END CUSTOMIZATION HERE
-
-      // Start animation loop if we were ready
-      //checkIfAllModelsAreLoaded();
-    }
-
-    function onSatLoadSuccess(gltf) {
-      console.log("Done loading box gltf model that needs customization");
-
-      // Do standard stuff we do for all GLTF models that get loaded
-      ++numLoadedModels;
-      var model = gltf.scene;
-      placeGLTFModelInSceneAndAnimate(gltf);
-      model.children.forEach(function(child) {
-        child.children.forEach(function(grandchild) {
-          // Add raycaster hit detection callback
-          grandchild.userData.hitCallback = function() {
-            // open link in new tab
-            window.open("https://twitch.tv/worldwidewev/videos/");
           };
           // Add mesh to list of hittable meshes
           hittableMeshes.push(grandchild);
